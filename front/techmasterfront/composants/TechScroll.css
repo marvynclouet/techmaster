@@ -1,0 +1,101 @@
+.tech-scroll-container {
+  width: 100%;
+  background: linear-gradient(to right, #f8f9fa 0%, transparent 5%, transparent 95%, #f8f9fa 100%);
+  padding: 30px 0;
+  overflow: hidden;
+  position: relative;
+  margin: 40px 0;
+}
+
+.scroll-track {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.scroll-content {
+  display: flex;
+  animation: scroll 60s linear infinite;
+  gap: 60px;
+  width: fit-content;
+  position: relative;
+  white-space: nowrap;
+}
+
+.tech-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  flex: 0 0 auto;
+  transition: transform 0.3s ease;
+  padding: 10px;
+}
+
+.tech-item:hover {
+  transform: translateY(-5px);
+}
+
+.tech-icon {
+  font-size: 2.5rem;
+  color: #2c3e50;
+}
+
+.tech-name {
+  font-size: 0.8rem;
+  color: #666;
+  font-weight: 500;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-50% - 20px));
+  }
+}
+
+/* Style spécifique pour certaines icônes */
+.tech-item:nth-child(3n) .tech-icon {
+  color: #61dafb; /* React blue */
+}
+
+.tech-item:nth-child(3n+1) .tech-icon {
+  color: #41b883; /* Vue green */
+}
+
+.tech-item:nth-child(3n+2) .tech-icon {
+  color: #f7df1e; /* JavaScript yellow */
+}
+
+/* Effet de pause au survol */
+.scroll-content:hover {
+  animation-play-state: paused;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+  .tech-icon {
+    font-size: 2rem;
+  }
+  
+  .tech-name {
+    font-size: 0.7rem;
+  }
+  
+  .scroll-content {
+    gap: 30px;
+  }
+  
+  .tech-icon img {
+    width: 80px;
+    height: 80px;
+  }
+}
+
+.tech-icon img {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+} 

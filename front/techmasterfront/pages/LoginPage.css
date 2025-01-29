@@ -1,0 +1,198 @@
+/* Reset des styles pour la page de connexion */
+.login-container {
+  min-height: calc(100vh - 80px);
+  margin-top: 80px;
+  background-color: #f8f9fa;
+  padding: 2rem 1rem;
+}
+
+/* Styles spécifiques pour la carte de connexion */
+.login-card {
+  background: white;
+  border: none !important;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+}
+
+.login-card .card-body {
+  padding: 3rem 2rem;
+}
+
+/* Reset des styles pour les éléments de formulaire */
+.login-container .form-control {
+  padding: 16px 20px;
+  font-size: 1rem;
+  margin-bottom: 25px;
+  height: 50px;
+  border-radius: 8px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.login-container .form-label {
+  font-size: 1.2rem;
+  margin-bottom: 15px;
+  font-weight: 500;
+  display: block;
+}
+
+/* Styles spécifiques pour les boutons de la page de connexion */
+.login-container .btn {
+  padding: 16px 30px;
+  font-size: 1.2rem;
+  height: 50px;
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0;
+}
+
+/* Styles pour le conteneur des boutons sociaux */
+.social-buttons {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem !important;
+  margin: 40px auto;
+  max-width: 600px;
+  width: 100%;
+  padding: 0 1rem;
+}
+
+/* Styles pour les boutons sociaux */
+.social-btn {
+  height: 60px !important;
+  min-width: 160px;
+  width: 100%;
+  border: 1px solid #dee2e6 !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  background-color: white !important;
+  transition: all 0.2s ease;
+  padding: 0.75rem 1.5rem !important;
+}
+
+/* Style pour le texte dans les boutons */
+.social-btn span {
+  font-size: 1rem;
+  white-space: nowrap;
+}
+
+.linkedin-icon {
+  color: #0077b5;
+}
+
+/* Styles pour le séparateur */
+.divider {
+  text-align: center;
+  margin: 2rem 0;
+  position: relative;
+}
+
+.divider::before,
+.divider::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: calc(50% - 70px);
+  height: 1px;
+  background-color: #dee2e6;
+}
+
+.divider::before {
+  left: 0;
+}
+
+.divider::after {
+  right: 0;
+}
+
+.divider span {
+  background-color: white;
+  padding: 0 1rem;
+  color: #6c757d;
+}
+
+/* Styles pour les liens dans la page de connexion */
+.login-container a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.login-container a:hover {
+  color: #0056b3;
+}
+
+/* Media queries */
+@media (max-width: 768px) {
+  .login-card .card-body {
+    padding: 2rem 1rem;
+  }
+  
+  .social-buttons {
+    grid-template-columns: 1fr;
+    max-width: 100%;
+  }
+  
+  .social-btn {
+    width: 100%;
+    min-width: unset;
+    height: 50px !important;
+  }
+  
+  .login-logo {
+    width: 150px; /* Logo légèrement plus petit sur mobile */
+  }
+  
+  .social-icon {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+/* Animation au survol */
+.social-btn:hover {
+  background-color: #f8f9fa !important;
+  transform: translateY(-2px);
+}
+
+/* Ajuster la taille du titre */
+.login-container h2 {
+  font-size: 2rem;
+  margin-bottom: 30px !important;
+  font-weight: 600;
+}
+
+/* Ajuster le texte de création de compte */
+.text-center.mt-4 {
+  font-size: 1.2rem;
+  margin-top: 50px !important;
+}
+
+/* Responsive */
+@media (min-width: 768px) {
+  .login-container .login-card {
+    padding: 50px;
+  }
+  
+  .login-container .social-btn {
+    padding: 12px 24px;
+  }
+  
+  .login-container .social-btn span {
+    display: inline;
+  }
+}
+
+/* Ajout des styles pour le logo */
+.login-logo {
+  width: 200px; /* Ajustez selon la taille souhaitée */
+  height: auto;
+  margin-bottom: 2rem;
+}
+
+/* Style pour les icônes des réseaux sociaux */
+.social-icon {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+} 
