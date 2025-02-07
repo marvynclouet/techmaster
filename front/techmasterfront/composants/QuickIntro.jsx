@@ -1,19 +1,28 @@
 import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import './QuickIntro.css';
+import logo from '../assets/logo.png';
+import TechScroll from '../composants/TechScroll';
 
 function QuickIntro() {
+  const scrollToNextSection = () => {
+    window.scrollTo({
+      top: window.innerHeight,
+      behavior: 'smooth'
+    });
+  };
+
   return (
     <div className="quick-intro">
       <Container>
         <Row className="align-items-center">
           <Col md={8} className="mx-auto text-center">
-            <h2 className="intro-title">Bienvenue sur Tech Master</h2>
+            <h2 className="intro-title">Devenez Digital Nomade avec Tech Master</h2>
             <p className="intro-text">
-              Découvrez une plateforme de formation interactive unique qui vous permet 
-              d'acquérir des compétences numériques recherchées. Nos cours en direct, 
-              nos formateurs experts et notre approche pratique vous garantissent une 
-              expérience d'apprentissage optimale.
+              Tech Master est la plateforme qui vous permet de devenir digital nomade en apprenant des compétences 
+              dans les domaines de la tech, de l'audiovisuel et bien plus encore. Nos formations interactives et nos 
+              formateurs experts vous offrent une expérience d'apprentissage pratique et flexible, adaptée à vos 
+              ambitions professionnelles.
             </p>
             <div className="intro-stats">
               <div className="stat-item">
@@ -29,11 +38,16 @@ function QuickIntro() {
                 <span className="stat-label">Étudiants</span>
               </div>
             </div>
+            <button onClick={scrollToNextSection} className="discover-button">
+              Découvrir
+              <span className="discover-arrow">↓</span>
+            </button>
           </Col>
         </Row>
       </Container>
+      <TechScroll />
     </div>
   );
 }
 
-export default QuickIntro; 
+export default QuickIntro;

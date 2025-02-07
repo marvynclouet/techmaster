@@ -2,6 +2,7 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import { Container, Row, Col, ButtonGroup } from 'react-bootstrap';
 import { useState } from 'react';
+import { Link } from 'react-router-dom'; // Importez Link
 import './cards.css';
 
 function VideoCards() {
@@ -35,15 +36,15 @@ function VideoCards() {
       level: "Avancé",
       category: "data"
     },
-    {
-      id: 4,
-      title: "UX/UI Design Masterclass",
-      image: "../assets/hq720 (3).jpg",
-      description: "Créez des interfaces utilisateur modernes et intuitives",
-      duration: "10h15min",
-      level: "Intermédiaire",
-      category: "design"
-    }
+      {
+        id: 4,
+        title: "UX/UI Design Masterclass",
+        image: "../assets/hq720 (3).jpg",
+        description: "Créez des interfaces utilisateur modernes et intuitives",
+        duration: "10h15min",
+        level: "Intermédiaire",
+        category: "design"
+      }
   ];
 
   const categories = [
@@ -89,7 +90,9 @@ function VideoCards() {
                   <span className="duration">⏱ {video.duration}</span>
                   <span className="level">📚 {video.level}</span>
                 </div>
-                <Button variant="primary" className="w-100">Voir le cours</Button>
+                <Link to="/live"> {/* Utilisez Link pour rediriger vers LiveStreamPage */}
+                  <Button variant="primary" className="w-100">Voir le cours</Button>
+                </Link>
               </Card.Body>
             </Card>
           </Col>

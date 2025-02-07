@@ -1,7 +1,8 @@
 .top-formateurs {
   width: 100%;
-  background: linear-gradient(to right, #f8f9fa 0%, transparent 5%, transparent 95%, #f8f9fa 100%);
+  overflow: hidden;
   padding: 30px 0;
+  background: linear-gradient(to right, #f8f9fa 0%, transparent 5%, transparent 95%, #f8f9fa 100%);
 }
 
 .formateurs-wrapper {
@@ -18,15 +19,28 @@
 .scroll-content {
   display: flex;
   gap: 30px;
+  animation: scrollFormateurs 40s linear infinite;
   width: fit-content;
-  position: relative;
-  white-space: nowrap;
+}
+
+@keyframes scrollFormateurs {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.scroll-content:hover {
+  animation-play-state: paused;
 }
 
 .formateur-item {
   flex: 0 0 auto;
   text-align: center;
   width: 150px;
+  padding: 0 15px;
 }
 
 .formateur-avatar {
@@ -82,4 +96,25 @@
   .formateurs-wrapper {
     gap: 20px;
   }
+}
+
+/* Ajout d'un effet de fondu sur les bords */
+.formateurs-wrapper::before,
+.formateurs-wrapper::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  width: 100px;
+  height: 100%;
+  z-index: 2;
+}
+
+.formateurs-wrapper::before {
+  left: 0;
+  background: linear-gradient(to right, #f8f9fa 0%, transparent 100%);
+}
+
+.formateurs-wrapper::after {
+  right: 0;
+  background: linear-gradient(to left, #f8f9fa 0%, transparent 100%);
 } 

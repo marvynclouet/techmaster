@@ -1,13 +1,40 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Container, Row, Col, Form, Button, Card } from 'react-bootstrap';
+import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import logo from '../assets/logo.png';
-// Import des nouveaux logos
-import googleLogo from '../assets/google.png';
-import linkedinLogo from '../assets/linkedin-logo-linkedin-logo-transparent-linkedin-icon-transparent-free-free-png.webp';
-import appleLogo from '../assets/Apple_logo_grey.svg.png';
 import './LoginPage.css';
 
 function LoginPage() {
+  const [formData, setFormData] = useState({
+    email: '',
+    password: ''
+  });
+  const [message, setMessage] = useState('');
+  const navigate = useNavigate();
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post('/api/auth/login', formData);
+      console.log('Connexion réussie:', response.data);
+
+      // Stocker le token
+      localStorage.setItem('token', response.data.token);
+
+      // Rediriger l'utilisateur
+      navigate('/profil');
+    } catch (error) {
+      console.error('Erreur lors de la connexion:', error.response.data);
+      setMessage('Erreur lors de la connexion. Veuillez réessayer.');
+    }
+  };
+
   return (
     <Container fluid className="login-container">
       <Row className="justify-content-center align-items-center h-100">
@@ -23,13 +50,19 @@ function LoginPage() {
                 <h2>Connexion</h2>
               </div>
               
-              <Form>
+              {message && <p className="text-center">{message}</p>}
+
+              <Form onSubmit={handleSubmit}>
                 <Form.Group className="mb-4" controlId="formEmail">
                   <Form.Label>Email</Form.Label>
                   <Form.Control 
                     type="email" 
                     placeholder="Entrez votre email"
                     size="lg"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    required
                   />
                 </Form.Group>
 
@@ -39,10 +72,11 @@ function LoginPage() {
                     type="password" 
                     placeholder="Entrez votre mot de passe"
                     size="lg"
+                    name="password"
+                    value={formData.password}
+                    onChange={handleChange}
+                    required
                   />
-                  <Form.Text className="text-end d-block mt-2">
-                    <a href="#forgot">Mot de passe oublié ?</a>
-                  </Form.Text>
                 </Form.Group>
 
                 <Button 
@@ -55,46 +89,9 @@ function LoginPage() {
                 </Button>
               </Form>
 
-              <div className="divider">
-                <span>ou continuer avec</span>
-              </div>
-
-              <Row className="social-buttons g-3">
-                <Col xs={12} md={4}>
-                  <Button variant="light" className="w-100 social-btn">
-                    <img 
-                      src={googleLogo} 
-                      alt="Google" 
-                      className="social-icon"
-                    />
-                    <span className="d-none d-md-inline ms-2">Google</span>
-                  </Button>
-                </Col>
-                <Col xs={12} md={4}>
-                  <Button variant="light" className="w-100 social-btn">
-                    <img 
-                      src={linkedinLogo} 
-                      alt="LinkedIn" 
-                      className="social-icon"
-                    />
-                    <span className="d-none d-md-inline ms-2">LinkedIn</span>
-                  </Button>
-                </Col>
-                <Col xs={12} md={4}>
-                  <Button variant="light" className="w-100 social-btn">
-                    <img 
-                      src={appleLogo} 
-                      alt="Apple" 
-                      className="social-icon"
-                    />
-                    <span className="d-none d-md-inline ms-2">Apple</span>
-                  </Button>
-                </Col>
-              </Row>
-
               <p className="text-center mt-4">
                 Pas encore de compte ? {' '}
-                <a href="#signup">Créer un compte</a>
+                <Link to="/register">Créer un compte</Link>
               </p>
             </Card.Body>
           </Card>

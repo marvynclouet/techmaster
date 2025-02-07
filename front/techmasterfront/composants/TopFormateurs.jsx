@@ -1,8 +1,11 @@
 import React from 'react';
 import { Container } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 import './TopFormateurs.css';
 
 function TopFormateurs() {
+  const navigate = useNavigate();
+  
   const formateurs = [
     {
       id: 1,
@@ -43,15 +46,29 @@ function TopFormateurs() {
     
   ];
 
+  const handleFormateurClick = (formateurId) => {
+    console.log('Navigation vers le formateur:', formateurId);
+    try {
+      navigate(`/formateur/${formateurId}`);
+    } catch (error) {
+      console.error('Erreur de navigation:', error);
+    }
+  };
+
   return (
     <section className="top-formateurs">
-      <Container>
+      <Container fluid>
         <h2 className="text-center mb-5">Nos Top Formateurs</h2>
         <div className="formateurs-wrapper">
           <div className="scroll-track">
             <div className="scroll-content">
-              {formateurs.map((formateur) => (
-                <div key={formateur.id} className="formateur-item">
+              {[...formateurs, ...formateurs].map((formateur, index) => (
+                <div 
+                  key={`${formateur.id}-${index}`} 
+                  className="formateur-item"
+                  onClick={() => handleFormateurClick(formateur.id)}
+                  style={{ cursor: 'pointer' }}
+                >
                   <div className="formateur-avatar">
                     <img src={formateur.avatar} alt={formateur.name} />
                   </div>
